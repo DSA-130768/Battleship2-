@@ -149,3 +149,16 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ---
 **Maintained by:** [@britoeabreu](https://github.com/britoeabreu)  
 *Created for the Software Engineering students at ISCTE-IUL.*
+
+
+──────                                                                                                            
+## Equipa                                                                                                       
+                                                                                                                                                                                                                                        
+* **Juliana Prado** — 54348 (LETI)                                                                              
+* **Luís Prado** — 98898 (LETI)                                                                                 
+* **Simão Sousa** — 130768 (DSA)`                                        
+                                                                                                                    
+> **Nota:**                                                                                      
+> O commit inicial do projeto ficou associado à minha conta pessoal (`@SS20112006`) devido às credenciais que já tinha guardadas no Mac. O repositório e todo o restante trabalho estão a ser feitos com a minha conta do curso (`@DSA-130768`).                                                                                                  
+
+────── 
