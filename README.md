@@ -122,15 +122,12 @@ graph TD
 ---
 
 ## 🧪 Testing
-We use high-coverage unit testing to ensure game stability. Run tests using:
+
 
 <img width="1102" height="2268" alt="image" src="https://github.com/user-attachments/assets/a9b0c86d-e9d8-499b-877a-728b4b270305" />
 
 
-> [!TIP]
-> Use the `-Dtest=ClassName` flag to run specific test suites during development.
 
----
 
 ## 🤝 Contributing
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create.
