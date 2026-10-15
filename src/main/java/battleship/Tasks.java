@@ -5,6 +5,11 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * The type Tasks.
@@ -15,7 +20,11 @@ public class Tasks {
 	 */
 	private static final Logger LOGGER = LogManager.getLogger();
 
-	/**
+    private static final List<Long> moveTimes = new ArrayList<>();
+    private static long totalTime = 0;
+    private static int totalMoves = 0;
+
+    /**
 	 * The constant GOODBYE_MESSAGE.
 	 */
 	private static final String GOODBYE_MESSAGE = "Bons ventos!";
@@ -67,12 +76,34 @@ public class Tasks {
 					if (myFleet != null)
 						game.printMyBoard(false, true);
 					break;
-				case RAJADA:
-					if (game != null) {
-						game.readEnemyFire(in);
-						myFleet.printStatus();
-						game.printMyBoard(true, false);
+                case RAJADA:
+                    if (game != null) {
 
+                        Instant startTime = Instant.now();
+
+                        game.readEnemyFire(in);
+
+                        Instant endTime = Instant.now();
+
+                        long moveTime = Duration.between(startTime, endTime).toSeconds();
+
+                        moveTimes.add(moveTime);
+
+                        totalTime += moveTime;
+                        totalMoves++;
+
+                        System.out.println("Tempo da jogada: " + moveTime + " segundos");
+
+                        myFleet.printStatus();
+                        game.printMyBoard(true, false);
+
+                        if (game.getRemainingShips() == 0) {
+                            printTimerStatistics();
+                            game.over();
+                            System.exit(0);
+                        }
+                    }
+                    break;
 						if (game.getRemainingShips() == 0) {
 							game.over();
 							int totalShots = game.getHits() + game.getInvalidShots() + game.getRepeatedShots();
@@ -95,6 +126,11 @@ public class Tasks {
 							}
 						}
 
+                        if (game.getRemainingShips() == 0) {
+                            printTimerStatistics();
+                            game.over();
+                            System.exit(0);
+                        }
 						if (game.getRemainingShips() == 0) {
 							game.over();
 							int totalShots = game.getHits() + game.getInvalidShots() + game.getRepeatedShots();
@@ -164,7 +200,8 @@ public class Tasks {
 				LOGGER.info("Navio desconhecido!");
 			}
 		}
-		LOGGER.info("{} navios adicionados com sucesso!", i);
+        LOGGER.info(i + " navios adicionados com sucesso!");
+
 		return fleet;
 	}
 
@@ -237,5 +274,34 @@ public class Tasks {
 			throw new IllegalArgumentException("Formato inválido. Use 'A3', 'A 3' ou similar.");
 		}
 	}
+    private static void printTimerStatistics() {
 
+        if (moveTimes.isEmpty()) {
+            System.out.println("Não existem jogadas registadas.");
+            return;
+        }
+
+        long min = moveTimes.stream()
+                .mapToLong(Long::longValue)
+                .min()
+                .orElse(0);
+
+        long max = moveTimes.stream()
+                .mapToLong(Long::longValue)
+                .max()
+                .orElse(0);
+
+        double average = moveTimes.stream()
+                .mapToLong(Long::longValue)
+                .average()
+                .orElse(0);
+
+        System.out.println("\n===== ESTATÍSTICAS DE TEMPO =====");
+        System.out.println("Total de jogadas: " + totalMoves);
+        System.out.println("Tempo total: " + totalTime + " segundos");
+        System.out.println("Jogada mais rápida: " + min + " segundos");
+        System.out.println("Jogada mais lenta: " + max + " segundos");
+        System.out.println("Tempo médio: " + average + " segundos");
+        System.out.println("=================================\n");
+    }
 }

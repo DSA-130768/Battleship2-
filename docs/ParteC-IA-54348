@@ -1,0 +1,977 @@
+Gemini - Chat - 13/10/2026
+================================================================================
+
+                    HISTÓRICO DA BATALHA NAVAL DOS DESCOBRIMENTOS
+
+================================================================================
+
+
+
+[UTILIZADOR]
+
+Considere que é um perito no famoso jogo da Batalha Naval, aqui numa versão do tempo
+
+dos Descobrimentos Portugueses, jogado num tabuleiro com linhas identificadas de A a
+
+J e colunas de 1 a 10. Deve começar por criar secretamente a sua frota de 11 navios:
+
+- 4 Barcas (1 posição na quadrícula)
+
+- 3 Caravelas (2 posições na quadrícula)
+
+- 2 Naus (3 posições na quadrícula)
+
+- 1 Fragata (4 posições na quadrícula)
+
+- 1 Galeão (5 posições na quadrícula, em forma de T, com um corpo de 3 posições
+
+e, numa das suas extremidades, uma posição adicional para cada lado, correspondentes às chamadas "asas da ponte")
+
+Os navios podem ser gerados com qualquer orientação no tabuleiro, desde que não
+
+toquem uns nos outros, nem mesmo por um canto (i.e. na diagonal), embora possam
+
+estar encostados às margens do tabuleiro. Repare que enquanto uma caravela, uma nau
+
+ou uma fragata pode ter duas orientações possíveis (norte-sul ou este-oeste), um galeão
+
+pode ter quatro orientações diferentes, consoante o braço do T esteja virado para norte,
+
+sul, este ou oeste. Já a questão da orientação não se coloca para uma barca, porque
+
+ocupa apenas uma posição no tabuleiro.
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+[ASSISTENTE]
+
+Com certeza! Aceito com muito gosto o desafio de participar nesta batalha naval épica com sabor aos Descobrimentos Portugueses.
+
+
+
+Gerada a minha frota secreta de 11 navios no tabuleiro de A a J e de 1 a 10 — respeitando escrupulosamente todas as regras de posicionamento e espaçamento (incluindo a ausência de contactos diagonais entre navios):
+
+
+
+A Minha Frota Empossada:
+
+* 4 Barcas (1 posição cada)
+
+* 3 Caravelas (2 posições cada)
+
+* 2 Naus (3 posições cada)
+
+* 1 Fragata (4 posições cada)
+
+* 1 Galeão (5 posições em forma de T)
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+[UTILIZADOR]
+
+Não. Vamos utilizar o protocolo definido no enunciado.
+
+A nossa interação será através de objetos JSON, quer para a rajada de 3 tiros, quer para a correspondente resposta.
+
+Uma rajada tem o seguinte formato:
+
+[
+
+  {"row":"A","column":5},
+
+  {"row":"C","column":10},
+
+  {"row":"F","column":5}
+
+]
+
+A resposta a uma rajada é feita em conjunto e não tiro a tiro.
+
+Exemplos de resposta:
+
+{
+
+  "validShots": 3,
+
+  "sunkBoats": [
+
+    {"count":1,"type":"Barca"}
+
+  ],
+
+  "repeatedShots":0,
+
+  "outsideShots":0,
+
+  "hitsOnBoats":[
+
+    {"hits":1,"type":"Nau"}
+
+  ],
+
+  "missedShots":1
+
+}
+
+Sugiro que me mandes agora uma rajada de tiros no formato JSON. Apenas uma rajada de cada vez.
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+[ASSISTENTE - RAJADA 1]
+
+[
+
+  {"row": "B", "column": 3},
+
+  {"row": "E", "column": 7},
+
+  {"row": "H", "column": 2}
+
+]
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+[UTILIZADOR - RESPOSTA 1]
+
+{
+
+  "validShots": 3,
+
+  "sunkBoats": [],
+
+  "repeatedShots": 0,
+
+  "outsideShots": 0,
+
+  "hitsOnBoats": [
+
+    {
+
+      "hits": 2,
+
+      "type": "Caravela"
+
+    },
+
+    {
+
+      "hits": 1,
+
+      "type": "Fragata"
+
+    }
+
+  ],
+
+  "missedShots": 0
+
+}
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+[ASSISTENTE - RAJADA 2]
+
+[
+
+  {"row": "B", "column": 2},
+
+  {"row": "B", "column": 4},
+
+  {"row": "E", "column": 6}
+
+]
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+[UTILIZADOR - RESPOSTA 2]
+
+{
+
+  "validShots": 3,
+
+  "sunkBoats": [],
+
+  "repeatedShots": 0,
+
+  "outsideShots": 0,
+
+  "hitsOnBoats": [
+
+    {
+
+      "hits": 1,
+
+      "type": "Fragata"
+
+    }
+
+  ],
+
+  "missedShots": 2
+
+}
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+[ASSISTENTE - RAJADA 3]
+
+[
+
+  {"row": "E", "column": 8},
+
+  {"row": "D", "column": 7},
+
+  {"row": "F", "column": 7}
+
+]
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+[UTILIZADOR - RESPOSTA 3 & ESTADO DO TABULEIRO]
+
+Jogada nº3 -> 3 tiros válidos: 1 tiro num(a) Fragata + 2 tiros na água
+
+{
+
+  "validShots" : 3,
+
+  "sunkBoats" : [ ],
+
+  "repeatedShots" : 0,
+
+  "outsideShots" : 0,
+
+  "hitsOnBoats" : [ {
+
+    "hits" : 1,
+
+    "type" : "Fragata"
+
+  } ],
+
+  "missedShots" : 2
+
+}
+
+
+
+[ {
+
+  "row" : "E",
+
+  "column" : 8
+
+}, {
+
+  "row" : "D",
+
+  "column" : 7
+
+}, {
+
+  "row" : "F",
+
+  "column" : 7
+
+} ]
+
+
+
+Tempo da jogada: 0 segundos
+
+Estado da Frota: 11 a flutuar, 0 afundados!
+
+
+
+     1 2 3 4 5 6 7 8 9 10
+
+   +---------------------+
+
+ A | . . . . # # # . . . |
+
+ B | . o * o . . . . . . |
+
+ C | # . # . . # # # . . |
+
+ D | . . . . . . o . . . |
+
+ E | . # . . # * * * . . |
+
+ F | . . . . . . o . . . |
+
+ G | . # . . . . . # # . |
+
+ H | . * . . # . . . . . |
+
+ I | . . . . # . . . # . |
+
+ J | # . . # # # . . . . |
+
+   +---------------------+
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+[ASSISTENTE - RAJADA 4]
+
+[
+
+  {"row": "E", "column": 5},
+
+  {"row": "C", "column": 2},
+
+  {"row": "D", "column": 5}
+
+]
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+[UTILIZADOR - RESPOSTA 4 & ESTADO DO TABULEIRO]
+
+Jogada nº4 -> 3 tiros válidos: 1 Fragata ao fundo + 2 tiros na água
+
+{
+
+  "validShots" : 3,
+
+  "sunkBoats" : [ {
+
+    "count" : 1,
+
+    "type" : "Fragata"
+
+  } ],
+
+  "repeatedShots" : 0,
+
+  "outsideShots" : 0,
+
+  "hitsOnBoats" : [ ],
+
+  "missedShots" : 2
+
+}
+
+
+
+[ {
+
+  "row" : "E",
+
+  "column" : 5
+
+}, {
+
+  "row" : "C",
+
+  "column" : 2
+
+}, {
+
+  "row" : "D",
+
+  "column" : 5
+
+} ]
+
+
+
+Tempo da jogada: 0 segundos
+
+Estado da Frota: 10 a flutuar, 1 afundados!
+
+
+
+     1 2 3 4 5 6 7 8 9 10
+
+   +---------------------+
+
+ A | . . . . # # # . . . |
+
+ B | . o * o . . . . . . |
+
+ C | # o # . . # # # . . |
+
+ D | . . . - o - o - - . |
+
+ E | . # . - * * * * - . |
+
+ F | . . . - - - o - - . |
+
+ G | . # . . . . . # # . |
+
+ H | . * . . # . . . . . |
+
+ I | . . . . # . . . # . |
+
+ J | # . . # # # . . . . |
+
+   +---------------------+
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+[ASSISTENTE - RAJADA 5]
+
+[
+
+  {"row": "A", "column": 5},
+
+  {"row": "A", "column": 6},
+
+  {"row": "A", "column": 7}
+
+]
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+[UTILIZADOR - RESPOSTA 5 & ESTADO DO TABULEIRO]
+
+Jogada nº5 -> 3 tiros válidos: 1 Nau ao fundo 
+
+{
+
+  "validShots" : 3,
+
+  "sunkBoats" : [ {
+
+    "count" : 1,
+
+    "type" : "Nau"
+
+  } ],
+
+  "repeatedShots" : 0,
+
+  "outsideShots" : 0,
+
+  "hitsOnBoats" : [ ],
+
+  "missedShots" : 0
+
+}
+
+
+
+[ {
+
+  "row" : "A",
+
+  "column" : 5
+
+}, {
+
+  "row" : "A",
+
+  "column" : 6
+
+}, {
+
+  "row" : "A",
+
+  "column" : 7
+
+} ]
+
+
+
+Tempo da jogada: 0 segundos
+
+Estado da Frota: 9 a flutuar, 2 afundados!
+
+
+
+     1 2 3 4 5 6 7 8 9 10
+
+   +---------------------+
+
+ A | . . . - * * * - . . |
+
+ B | . o * o - - - - . . |
+
+ C | # o # . . # # # . . |
+
+ D | . . . - o - o - - . |
+
+ E | . # . - * * * * - . |
+
+ F | . . . - - - o - - . |
+
+ G | . # . . . . . # # . |
+
+ H | . * . . # . . . . . |
+
+ I | . . . . # . . . # . |
+
+ J | # . . # # # . . . . |
+
+   +---------------------+
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+[ASSISTENTE - RAJADA 6]
+
+[
+
+  {"row": "C", "column": 6},
+
+  {"row": "C", "column": 7},
+
+  {"row": "C", "column": 8}
+
+]
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+[UTILIZADOR - RESPOSTA 6 & ESTADO DO TABULEIRO]
+
+Jogada nº6 -> 3 tiros válidos: 1 Nau ao fundo 
+
+{
+
+  "validShots" : 3,
+
+  "sunkBoats" : [ {
+
+    "count" : 1,
+
+    "type" : "Nau"
+
+  } ],
+
+  "repeatedShots" : 0,
+
+  "outsideShots" : 0,
+
+  "hitsOnBoats" : [ ],
+
+  "missedShots" : 0
+
+}
+
+
+
+[ {
+
+  "row" : "C",
+
+  "column" : 6
+
+}, {
+
+  "row" : "C",
+
+  "column" : 7
+
+}, {
+
+  "row" : "C",
+
+  "column" : 8
+
+} ]
+
+
+
+Tempo da jogada: 0 segundos
+
+Estado da Frota: 8 a flutuar, 3 afundados!
+
+
+
+     1 2 3 4 5 6 7 8 9 10
+
+   +---------------------+
+
+ A | . . . - * * * - . . |
+
+ B | . o * o - - - - - . |
+
+ C | # o # . - * * * - . |
+
+ D | . . . - o - o - - . |
+
+ E | . # . - * * * * - . |
+
+ F | . . . - - - o - - . |
+
+ G | . # . . . . . # # . |
+
+ H | . * . . # . . . . . |
+
+ I | . . . . # . . . # . |
+
+ J | # . . # # # . . . . |
+
+   +---------------------+
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+[ASSISTENTE - RAJADA 7]
+
+[
+
+  {"row": "G", "column": 8},
+
+  {"row": "G", "column": 9},
+
+  {"row": "I", "column": 9}
+
+]
+
+================================================================================
+
+
+
+
+
+================================================================================
+================================================================================
+================================================================================
+================================================================================
+
+
+Resultado:
+***  Battleship  ***
+======================= AJUDA DO MENU =========================
+Digite um dos comandos abaixo para interagir com o jogo:
+- gerafrota: Gera uma frota aleatória de navios.
+- lefrota: Permite criar e carregar uma frota personalizada.
+- estado: Mostra o status atual da frota.)
+- mapa: Exibe o mapa da frota.
+- rajada: Realiza uma rajada de disparos.
+- simula: Simula um jogo completo.
+- tiros: Lista os tiros válidos realizados (* = tiro em navio, o = tiro na água)
+- desisto: Encerra o jogo.
+===============================================================
+> gerafrota
+
+     1 2 3 4 5 6 7 8 9 10
+   +---------------------+
+ A | . . . . # # # . . . |
+ B | . . # . . . . . . . |
+ C | # . # . . # # # . . |
+ D | . . . . . . . . . . |
+ E | . # . . # # # # . . |
+ F | . . . . . . . . . . |
+ G | . # . . . . . # # . |
+ H | . # . . # . . . . . |
+ I | . . . . # . . . # . |
+ J | # . . # # # . . . . |
+   +---------------------+
+          LEGENDA
+'#'->navio, '-'->adjacente a navio, '.'->água
+'*'->Tiro certeiro, 'o'->Tiro na água
+
+> rajada B3 E7 H2
+Jogada nº1 -> 3 tiros válidos: 2 tiros num(a) Caravela + 1 tiro num(a) Fragata 
+{
+  "validShots" : 3,
+  "sunkBoats" : [ ],
+  "repeatedShots" : 0,
+  "outsideShots" : 0,
+  "hitsOnBoats" : [ {
+    "hits" : 2,
+    "type" : "Caravela"
+  }, {
+    "hits" : 1,
+    "type" : "Fragata"
+  } ],
+  "missedShots" : 0
+}
+
+[ {
+  "row" : "B",
+  "column" : 3
+}, {
+  "row" : "E",
+  "column" : 7
+}, {
+  "row" : "H",
+  "column" : 2
+} ]
+
+Tempo da jogada: 0 segundos
+Estado da Frota: 11 a flutuar, 0 afundados!
+
+     1 2 3 4 5 6 7 8 9 10
+   +---------------------+
+ A | . . . . # # # . . . |
+ B | . . * . . . . . . . |
+ C | # . # . . # # # . . |
+ D | . . . . . . . . . . |
+ E | . # . . # # * # . . |
+ F | . . . . . . . . . . |
+ G | . # . . . . . # # . |
+ H | . * . . # . . . . . |
+ I | . . . . # . . . # . |
+ J | # . . # # # . . . . |
+   +---------------------+
+
+> rajada B2 B4 E6
+Jogada nº2 -> 3 tiros válidos: 1 tiro num(a) Fragata + 2 tiros na água
+{
+  "validShots" : 3,
+  "sunkBoats" : [ ],
+  "repeatedShots" : 0,
+  "outsideShots" : 0,
+  "hitsOnBoats" : [ {
+    "hits" : 1,
+    "type" : "Fragata"
+  } ],
+  "missedShots" : 2
+}
+
+[ {
+  "row" : "B",
+  "column" : 2
+}, {
+  "row" : "B",
+  "column" : 4
+}, {
+  "row" : "E",
+  "column" : 6
+} ]
+
+Tempo da jogada: 0 segundos
+Estado da Frota: 11 a flutuar, 0 afundados!
+
+     1 2 3 4 5 6 7 8 9 10
+   +---------------------+
+ A | . . . . # # # . . . |
+ B | . o * o . . . . . . |
+ C | # . # . . # # # . . |
+ D | . . . . . . . . . . |
+ E | . # . . # * * # . . |
+ F | . . . . . . . . . . |
+ G | . # . . . . . # # . |
+ H | . * . . # . . . . . |
+ I | . . . . # . . . # . |
+ J | # . . # # # . . . . |
+   +---------------------+
+
+> rajada E8 D7 F7
+Jogada nº3 -> 3 tiros válidos: 1 tiro num(a) Fragata + 2 tiros na água
+{
+  "validShots" : 3,
+  "sunkBoats" : [ ],
+  "repeatedShots" : 0,
+  "outsideShots" : 0,
+  "hitsOnBoats" : [ {
+    "hits" : 1,
+    "type" : "Fragata"
+  } ],
+  "missedShots" : 2
+}
+
+[ {
+  "row" : "E",
+  "column" : 8
+}, {
+  "row" : "D",
+  "column" : 7
+}, {
+  "row" : "F",
+  "column" : 7
+} ]
+
+Tempo da jogada: 0 segundos
+Estado da Frota: 11 a flutuar, 0 afundados!
+
+     1 2 3 4 5 6 7 8 9 10
+   +---------------------+
+ A | . . . . # # # . . . |
+ B | . o * o . . . . . . |
+ C | # . # . . # # # . . |
+ D | . . . . . . o . . . |
+ E | . # . . # * * * . . |
+ F | . . . . . . o . . . |
+ G | . # . . . . . # # . |
+ H | . * . . # . . . . . |
+ I | . . . . # . . . # . |
+ J | # . . # # # . . . . |
+   +---------------------+
+
+> rajada E5 C2 D5
+Jogada nº4 -> 3 tiros válidos: 1 Fragata ao fundo + 2 tiros na água
+{
+  "validShots" : 3,
+  "sunkBoats" : [ {
+    "count" : 1,
+    "type" : "Fragata"
+  } ],
+  "repeatedShots" : 0,
+  "outsideShots" : 0,
+  "hitsOnBoats" : [ ],
+  "missedShots" : 2
+}
+
+[ {
+  "row" : "E",
+  "column" : 5
+}, {
+  "row" : "C",
+  "column" : 2
+}, {
+  "row" : "D",
+  "column" : 5
+} ]
+
+Tempo da jogada: 0 segundos
+Estado da Frota: 10 a flutuar, 1 afundados!
+
+     1 2 3 4 5 6 7 8 9 10
+   +---------------------+
+ A | . . . . # # # . . . |
+ B | . o * o . . . . . . |
+ C | # o # . . # # # . . |
+ D | . . . - o - o - - . |
+ E | . # . - * * * * - . |
+ F | . . . - - - o - - . |
+ G | . # . . . . . # # . |
+ H | . * . . # . . . . . |
+ I | . . . . # . . . # . |
+ J | # . . # # # . . . . |
+   +---------------------+
+
+> rajada A5 A6 A7
+Jogada nº5 -> 3 tiros válidos: 1 Nau ao fundo 
+{
+  "validShots" : 3,
+  "sunkBoats" : [ {
+    "count" : 1,
+    "type" : "Nau"
+  } ],
+  "repeatedShots" : 0,
+  "outsideShots" : 0,
+  "hitsOnBoats" : [ ],
+  "missedShots" : 0
+}
+
+[ {
+  "row" : "A",
+  "column" : 5
+}, {
+  "row" : "A",
+  "column" : 6
+}, {
+  "row" : "A",
+  "column" : 7
+} ]
+
+Tempo da jogada: 0 segundos
+Estado da Frota: 9 a flutuar, 2 afundados!
+
+     1 2 3 4 5 6 7 8 9 10
+   +---------------------+
+ A | . . . - * * * - . . |
+ B | . o * o - - - - . . |
+ C | # o # . . # # # . . |
+ D | . . . - o - o - - . |
+ E | . # . - * * * * - . |
+ F | . . . - - - o - - . |
+ G | . # . . . . . # # . |
+ H | . * . . # . . . . . |
+ I | . . . . # . . . # . |
+ J | # . . # # # . . . . |
+   +---------------------+
+
+> rajada C6 C7 C8
+Jogada nº6 -> 3 tiros válidos: 1 Nau ao fundo 
+{
+  "validShots" : 3,
+  "sunkBoats" : [ {
+    "count" : 1,
+    "type" : "Nau"
+  } ],
+  "repeatedShots" : 0,
+  "outsideShots" : 0,
+  "hitsOnBoats" : [ ],
+  "missedShots" : 0
+}
+
+[ {
+  "row" : "C",
+  "column" : 6
+}, {
+  "row" : "C",
+  "column" : 7
+}, {
+  "row" : "C",
+  "column" : 8
+} ]
+
+Tempo da jogada: 0 segundos
+Estado da Frota: 8 a flutuar, 3 afundados!
+
+     1 2 3 4 5 6 7 8 9 10
+   +---------------------+
+ A | . . . - * * * - . . |
+ B | . o * o - - - - - . |
+ C | # o # . - * * * - . |
+ D | . . . - o - o - - . |
+ E | . # . - * * * * - . |
+ F | . . . - - - o - - . |
+ G | . # . . . . . # # . |
+ H | . * . . # . . . . . |
+ I | . . . . # . . . # . |
+ J | # . . # # # . . . . |
+   +---------------------+

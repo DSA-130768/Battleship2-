@@ -122,15 +122,9 @@ graph TD
 ---
 
 ## 🧪 Testing
-We use high-coverage unit testing to ensure game stability. Run tests using:
-```bash
-mvn test
-```
 
-> [!TIP]
-> Use the `-Dtest=ClassName` flag to run specific test suites during development.
+<img width="1536" height="2268" alt="image" src="https://github.com/user-attachments/assets/9a3ee934-9a71-4038-8c7e-ebd6ff9ce950" />
 
----
 
 ## 🤝 Contributing
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create.
