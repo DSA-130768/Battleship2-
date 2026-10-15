@@ -41,6 +41,7 @@ public class Tasks {
 	private static final String MAPA = "mapa";
 	private static final String STATUS = "estado";
 	private static final String SIMULA = "simula";
+	private static final String SCOREBOARD = "scoreboard";
 
 	/**
 	 * This task also tests the fighting element of a round of three shots
@@ -103,6 +104,15 @@ public class Tasks {
                         }
                     }
                     break;
+						if (game.getRemainingShips() == 0) {
+							game.over();
+							int totalShots = game.getHits() + game.getInvalidShots() + game.getRepeatedShots();
+							Scoreboard.saveScore(new GameScore("Jogador", totalShots, game.getHits(), game.getSunkShips(), true));
+							Scoreboard.displayScoreboard();
+							System.exit(0);
+						}
+					}
+					break;
 				case SIMULA:
 					if (game != null) {
 						while (game.getRemainingShips() > 0){
@@ -121,11 +131,21 @@ public class Tasks {
                             game.over();
                             System.exit(0);
                         }
+						if (game.getRemainingShips() == 0) {
+							game.over();
+							int totalShots = game.getHits() + game.getInvalidShots() + game.getRepeatedShots();
+							Scoreboard.saveScore(new GameScore("Jogador", totalShots, game.getHits(), game.getSunkShips(), true));
+							Scoreboard.displayScoreboard();
+							System.exit(0);
+						}
 					}
 					break;
 				case TIROS:
 					if (game != null)
 						game.printMyBoard(true, true);
+					break;
+				case SCOREBOARD:
+					Scoreboard.displayScoreboard();
 					break;
                 case AJUDA:
                     menuHelp();
@@ -153,6 +173,7 @@ public class Tasks {
 		System.out.println("- " + SIMULA + ": Simula um jogo completo.");
 		System.out.println("- " + TIROS + ": Lista os tiros válidos realizados (* = tiro em navio, o = tiro na água)");
 		System.out.println("- " + DESISTIR + ": Encerra o jogo.");
+		System.out.println("- " + SCOREBOARD + ": Exibe o histórico e ranking dos jogos.");
 		System.out.println("===============================================================");
 	}
 	/**
