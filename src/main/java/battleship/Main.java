@@ -3,7 +3,7 @@
  */
 package battleship;
 
-public class Main
+public class idioMain
 {
 	/**
 	 * Main.
