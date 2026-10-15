@@ -146,7 +146,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 
 ──────                                                                                                            
-## Equipa                                                                                                       
+## Equipa :                                                                                                     
                                                                                                                                                                                                                                         
 * **Juliana Prado** — 54348 (LETI)                                                                              
 * **Luís Prado** — 98898 (LETI)
