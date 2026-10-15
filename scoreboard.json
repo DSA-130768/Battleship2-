@@ -5,4 +5,18 @@
   "hits" : 25,
   "sunkShips" : 11,
   "victory" : true
+}, {
+  "playerName" : "Jogador",
+  "date" : "15/10/2026 20:34:38",
+  "totalShots" : 26,
+  "hits" : 25,
+  "sunkShips" : 11,
+  "victory" : true
+}, {
+  "playerName" : "Jogador",
+  "date" : "15/10/2026 20:41:43",
+  "totalShots" : 25,
+  "hits" : 25,
+  "sunkShips" : 11,
+  "victory" : true
 } ]

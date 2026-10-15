@@ -355,6 +355,7 @@ public class Game implements IGame
 		alienMoves.add(move);
 
 		moveNumber++;
+		ToPDF.exportarJogada(moveNumber,shots);
 	}
 
 	/**
