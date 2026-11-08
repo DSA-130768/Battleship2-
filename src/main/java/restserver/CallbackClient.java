@@ -114,7 +114,7 @@ public class CallbackClient {
 	 * This allows AiShotStrategy to see past hits when computing the next move.
 	 */
 	private void recordAiMove(IGame game, List<IPosition> shots, ShotResponse m2b) {
-		if (m2b.results == null) return;
+		if (m2b.results == null) {return;}
 
 		List<IGame.ShotResult> shotResults = new ArrayList<>();
 		for (int i = 0; i < shots.size() && i < m2b.results.size(); i++) {
