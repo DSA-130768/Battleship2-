@@ -1,8 +1,7 @@
 # 130768 - Simão Sousa
 version: "1.0"
 profile:
-  base:
-    name: empty
+  name: empty
   inspections:
     - inspection: OverlyLongMethod
       enabled: true
