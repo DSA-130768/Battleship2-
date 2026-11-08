@@ -1,13 +1,14 @@
 # 130768 - Simão Sousa
 version: "1.0"
 profile:
-  name: empty
+  base:
+    name: empty
   inspections:
-    - inspection: OverlyLongMethod
+    - inspection: NonCommentSourceStatements
       enabled: true
       options:
         m_limit: 20
-    - inspection: OverlyComplexMethod
+    - inspection: CyclomaticComplexity
       enabled: true
       options:
         m_limit: 10
