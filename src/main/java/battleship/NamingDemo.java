@@ -2,11 +2,11 @@
 package battleship;
 
 /**
- * Deliberate naming violation, used to test the Checkstyle quality gate.
+ * Naming violation fixed: the method name now follows lowerCamelCase.
  */
 public class NamingDemo {
 
-    public int Calcular_Pontos(int hits, int misses) {
+    public int calcularPontos(int hits, int misses) {
         return hits * 10 - misses;
     }
 }
