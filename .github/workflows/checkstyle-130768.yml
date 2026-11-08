@@ -1,0 +1,26 @@
+# 130768 - Simão Sousa
+name: Checkstyle naming gate 130768
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+jobs:
+  checkstyle-130768:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dbelyaev/action-checkstyle@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          checkstyle_config: checkstyle-130768.xml
+          reporter: github-pr-check
+          level: error
+          fail_level: error
+          filter_mode: nofilter
