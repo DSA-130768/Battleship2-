@@ -23,7 +23,7 @@ jobs:
 
       - uses: JetBrains/qodana-action@v2026.2
         with:
-          args: --config qodana-130768.yaml
+          args: --config qodana-130768.yaml --profile-path /data/project/.qodana/profiles/profile-130768.yaml
           pr-mode: false
           use-annotations: true
           post-pr-comment: true
