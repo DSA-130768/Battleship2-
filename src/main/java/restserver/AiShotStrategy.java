@@ -44,9 +44,9 @@ public class AiShotStrategy {
 		// ── Phase 2 TARGET: prioritise neighbours of existing hits ──────────
 		if (!hitTargets.isEmpty()) {
 			for (IPosition hit : hitTargets) {
-				if (chosen.size() >= Game.NUMBER_SHOTS) break;
+				if (chosen.size() >= Game.NUMBER_SHOTS){ break;}
 				for (IPosition neighbour : hit.adjacentPositions()) {
-					if (chosen.size() >= Game.NUMBER_SHOTS) break;
+					if (chosen.size() >= Game.NUMBER_SHOTS){ break;}
 					if (!alreadyShot.contains(neighbour) && !chosen.contains(neighbour)) {
 						chosen.add(neighbour);
 					}
@@ -54,33 +54,38 @@ public class AiShotStrategy {
 			}
 		}
 
-		// ── Phase 1 HUNT: fill remaining slots from checkerboard pattern ────
-		if (chosen.size() < Game.NUMBER_SHOTS) {
-			List<IPosition> huntPool = buildHuntPool(alreadyShot, chosen);
-			Collections.shuffle(huntPool, new Random(System.currentTimeMillis()));
-			for (IPosition p : huntPool) {
-				if (chosen.size() >= Game.NUMBER_SHOTS) break;
-				chosen.add(p);
-			}
-		}
+        // ── Phase 1 HUNT: fill remaining slots from checkerboard pattern ────
+        if (chosen.size() < Game.NUMBER_SHOTS) {
+            List<IPosition> huntPool = buildHuntPool(alreadyShot, chosen);
+            Collections.shuffle(huntPool, new Random(System.currentTimeMillis()));
 
-		// Safety fallback: if still not enough shots, pick any unseen cell
-		if (chosen.size() < Game.NUMBER_SHOTS) {
-			for (int r = 0; r < Game.BOARD_SIZE && chosen.size() < Game.NUMBER_SHOTS; r++) {
-				for (int c = 0; c < Game.BOARD_SIZE && chosen.size() < Game.NUMBER_SHOTS; c++) {
-					IPosition p = new Position(r, c);
-					if (!alreadyShot.contains(p) && !chosen.contains(p)) {
-						chosen.add(p);
-					}
-				}
-			}
-		}
+            for (IPosition p : huntPool) {
+                if (chosen.size() >= Game.NUMBER_SHOTS) {
+                    break;
+                }
+                chosen.add(p);
+            }
+        }
 
-		System.out.print("[AI] Firing: ");
-		chosen.forEach(p -> System.out.print(p + " "));
-		System.out.println();
+// Safety fallback: if still not enough shots, pick any unseen cell
+        if (chosen.size() < Game.NUMBER_SHOTS) {
+            for (int r = 0; r < Game.BOARD_SIZE
+                    && chosen.size() < Game.NUMBER_SHOTS; r++) {
+                for (int c = 0; c < Game.BOARD_SIZE
+                        && chosen.size() < Game.NUMBER_SHOTS; c++) {
+                    IPosition p = new Position(r, c);
+                    if (!alreadyShot.contains(p) && !chosen.contains(p)) {
+                        chosen.add(p);
+                    }
+                }
+            }
+        }
 
-		return chosen;
+        System.out.print("[AI] Firing: ");
+        chosen.forEach(p -> System.out.print(p + " "));
+        System.out.println();
+
+        return chosen;
 	}
 
 	// ── Private helpers ───────────────────────────────────────────────────────
