@@ -1,0 +1,30 @@
+# 130768 - Simão Sousa
+name: Qodana smell gate 130768
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+jobs:
+  qodana-130768:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - uses: JetBrains/qodana-action@v2026.2
+        with:
+          args: --config qodana-130768.yaml --profile-path /data/project/.qodana/profiles/profile-130768.xml
+          pr-mode: false
+          use-annotations: true
+          post-pr-comment: true
+          upload-result: true
