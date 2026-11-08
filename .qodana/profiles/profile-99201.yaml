@@ -1,7 +1,7 @@
 # 99201 - Daniel Maio
-        profile:
-        base:
-        name: empty
-        inspections:
-        - inspection: VariableAlreadyAssigned
-        enabled: true
+profile:
+  base:
+    name: empty
+  inspections:
+    - inspection: VariableAlreadyAssigned
+      enabled: true
